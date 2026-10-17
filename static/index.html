@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Certificate Studio</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand-mark">C</div>
+    <div><strong>Certificate Studio</strong><span>Participation certificates, made simple</span></div>
+    <div class="top-tag">PDF · EXCEL · EMAIL</div>
+  </header>
+
+  <main class="layout">
+    <section class="intro">
+      <p class="eyebrow">EVENT ORGANIZER TOOLKIT</p>
+      <h1>Every participant.<br><span>One personal certificate.</span></h1>
+      <p class="subhead">Upload registrations, preview your certificate, then send personalized PDFs to each student's email.</p>
+      <div class="steps">
+        <div><b>01</b><span>Upload registrations</span></div>
+        <div><b>02</b><span>Review a preview</span></div>
+        <div><b>03</b><span>Confirm and send</span></div>
+      </div>
+      <div class="notice"><strong>Privacy note</strong><p>Student details are processed by this app. Use it on a trusted computer, keep your Gmail App Password private, and delete generated job files when finished.</p></div>
+    </section>
+
+    <section class="panel">
+      <div class="panel-head">
+        <div><p class="eyebrow">NEW BATCH</p><h2>Generate certificates</h2></div>
+        <span class="status-pill"><i></i> Ready</span>
+      </div>
+      <form id="certificateForm">
+        <label for="eventName">Event name <em>*</em></label>
+        <input id="eventName" name="event_name" type="text" placeholder="e.g. AURA 2K26 2.0 – PROJECT EXPO" required>
+
+        <label>Registration spreadsheet <em>*</em></label>
+        <label class="upload-box" for="excelFile">
+          <span class="upload-icon">↥</span>
+          <strong id="excelLabel">Choose Excel or CSV file</strong>
+          <small>.xlsx, .xls, .xlsm, or .csv · member name and email columns required</small>
+          <input id="excelFile" name="excel" type="file" accept=".xlsx,.xls,.xlsm,.csv" required>
+        </label>
+
+        <label>Certificate PDF template <span class="optional">Optional</span></label>
+        <label class="upload-box compact" for="templateFile">
+          <span class="upload-icon">▧</span>
+          <strong id="templateLabel">Use the included participation certificate</strong>
+          <small>Upload a different PDF only if you want to replace the included template</small>
+          <input id="templateFile" name="template" type="file" accept=".pdf">
+        </label>
+
+        <div class="button-row">
+          <button id="previewBtn" class="button secondary" type="button">Preview certificate <span>↗</span></button>
+          <button id="sendBtn" class="button primary" type="submit">Review &amp; send <span>→</span></button>
+        </div>
+        <p class="fineprint">Emails are not sent when you preview. Bulk delivery starts only after you confirm.</p>
+      </form>
+      <div id="message" class="message" hidden></div>
+    </section>
+  </main>
+
+  <section id="confirmSection" class="result-panel" hidden>
+    <div class="result-heading"><div><p class="eyebrow">FINAL CHECK</p><h2>Confirm bulk email</h2></div><span class="status-pill warn">Review first</span></div>
+    <p id="confirmText"></p>
+    <div class="confirm-check"><input id="confirmCheckbox" type="checkbox"><label for="confirmCheckbox">I reviewed the recipient list and authorize sending certificates to these email addresses.</label></div>
+    <button id="confirmSendBtn" class="button primary" disabled>Send certificates now <span>→</span></button>
+    <div id="recipientPreview" class="recipient-list"></div>
+  </section>
+
+  <section id="reportSection" class="result-panel" hidden>
+    <div class="result-heading"><div><p class="eyebrow">BATCH RESULTS</p><h2>Email delivery report</h2></div><span id="jobDate" class="small-muted"></span></div>
+    <div class="stats">
+      <div><small>Total records</small><strong id="totalCount">0</strong></div>
+      <div class="success-stat"><small>Sent</small><strong id="sentCount">0</strong></div>
+      <div class="fail-stat"><small>Failed</small><strong id="failedCount">0</strong></div>
+      <div><small>Skipped</small><strong id="skippedCount">0</strong></div>
+    </div>
+    <div class="download-row">
+      <a id="zipLink" class="button primary" href="#">Download all certificates (.zip) ↓</a>
+      <a id="csvLink" class="button secondary" href="#">Download report (.csv) ↓</a>
+    </div>
+    <div class="table-wrap">
+      <table><thead><tr><th>Student</th><th>Email</th><th>Status</th><th>Details</th></tr></thead><tbody id="reportRows"></tbody></table>
+    </div>
+    <p class="fineprint">“Sent” means Gmail's SMTP server accepted the message; it does not guarantee the email reached the inbox. Check failed rows and retry only after correcting the cause.</p>
+  </section>
+
+  <footer>Certificate Studio <span>•</span> Local-first starter app</footer>
+  <script src="/static/app.js"></script>
+</body>
+</html>
